@@ -1,0 +1,105 @@
+<!--
+	此示例下载自 https://echarts.apache.org/examples/zh/editor.html?c=calendar-vertical&code=GYVwdgxgLglg9mABAcwKZQGowE5RAQwBsARfKfACgE9V9sBKRAbwChFEIEBnKRAEzKpEAXkQBqVBAAWdKFwB0sALap5ABzpdU1WtnGIA5AFoADAEZTZg_QDcbDt16owfEeMkzcC5ao3YtFGI0dPpm-sbmltZ27JxgPPz4VAAqMCpuAMwAbCYmiABUiABMACwFiGa5JjEO8bwC5G4A2gC6NcBwehSE6Ig-bg2oNn1pQgA8iM58w_1iogIpo4ys7OwN-OogXFIUTfark9Ky3qPyHdhKZBQ-ADSGTFSPVAC-RkwAsu-vTHx8zwZ3YBELT0G77VbvMhSM6EOCdCiQqDQ7D4FxwJQURiFSq5ejglq2ezPezYdAgbBIdZ2YlwNSwBBuFZ9OGEWBqABczHBajgXBg9LAnIMUFpAPB50uUCgqGwnNAkAFiAoamW4NijkQErIbg8x0Upy1UGV8nWTRMLTuBgeT2-n2-v3-gOBqEJB3YpLwFM1nUl4SF-jUJrI-CaZja4OJ7GeYPYADcYFwCIRIRyuQclDBBYgTDHVpcAB6cnE58EQIgQECEfAAIx6nKg2BAqFz7E6MGcUCFsZlsDLhDFBx6wE7hhMA9WItTBggHZlBiJub7UzonL2q3BTMHqGHRYArCW3RxUIRCABlGAAL1Qq6KOcM-BAIoMFrViGrcCl6KLB7dbY7XZ7GA-3HA4UTANAhVvMwAHYQNWBYABka2PTlNzdS5sGQTNOV3V9I1WfCX3YLRsHbLhV3BDdXygKg1GvQwpFoKBLjUOD1U6PhM0EU8qB4VAlCFJcXDoNjEnITk0EwHA8CIUhyAoAwoNgvEDkIlhnhsIA
+	⚠ 请注意，该图表不是 Apache ECharts 官方示例，而是由用户代码生成的。请注意鉴别其内容。
+-->
+<!DOCTYPE html>
+<html lang="zh-CN" style="height: 100%">
+<head>
+  <meta charset="utf-8">
+</head>
+<body style="height: 100%; margin: 0">
+  <div id="container" style="height: 100%"></div>
+
+  
+  <script type="text/javascript" src="https://fastly.jsdelivr.net/npm/echarts@5.4.2/dist/echarts.min.js"></script>
+  <!-- Uncomment this line if you want to dataTool extension
+  <script type="text/javascript" src="https://fastly.jsdelivr.net/npm/echarts@5.4.2/dist/extension/dataTool.min.js"></script>
+  -->
+  <!-- Uncomment this line if you want to use gl extension
+  <script type="text/javascript" src="https://fastly.jsdelivr.net/npm/echarts-gl@2/dist/echarts-gl.min.js"></script>
+  -->
+  <!-- Uncomment this line if you want to echarts-stat extension
+  <script type="text/javascript" src="https://fastly.jsdelivr.net/npm/echarts-stat@latest/dist/ecStat.min.js"></script>
+  -->
+  <!-- Uncomment this line if you want to use map
+  <script type="text/javascript" src="https://fastly.jsdelivr.net/npm/echarts@4.9.0/map/js/china.js"></script>
+  <script type="text/javascript" src="https://fastly.jsdelivr.net/npm/echarts@4.9.0/map/js/world.js"></script>
+  -->
+  <!-- Uncomment these two lines if you want to use bmap extension
+  <script type="text/javascript" src="https://api.map.baidu.com/api?v=3.0&ak=YOUR_API_KEY"></script>
+  <script type="text/javascript" src="https://fastly.jsdelivr.net/npm/echarts@5.4.2/dist/extension/bmap.min.js"></script>
+  -->
+
+  <script type="text/javascript">
+    var dom = document.getElementById('container');
+    var myChart = echarts.init(dom, null, {
+      renderer: 'canvas',
+      useDirtyRect: false
+    });
+    var app = {};
+    
+    var option;
+    function getVirtualData(year, inputData) {
+    const data = [];
+      for (let i = 0; i < inputData.length; i++) {
+        const date = echarts.time.parse(year + '-' + (i + 1) + '-01');
+        const value = inputData[i];
+        data.push([date, value]);
+      }
+      return data;
+    }
+
+    // 定义您的数据并存储在inputData数组中
+    const inputData = [
+      // 在这里添加您的数据，每个数组元素应包含日期和对应的值
+      ['2017-01-01', 100],
+      ['2017-01-02', 200],
+      ['2017-01-03', 150]
+    ];
+option = {
+  tooltip: {
+    position: 'top',
+    formatter: function (p) {
+      const format = echarts.time.format(p.data[0], '{yyyy}-{MM}-{dd}', false);
+      return format + ': ' + p.data[1];
+    }
+  },
+  visualMap: {
+    min: 0,
+    max: 1000,
+    calculable: true,
+    orient: 'vertical',
+    left: '0',
+    top: 'center'
+  },
+  calendar: [
+   
+    {
+      left: 150,
+      cellSize: [20, 'auto'],
+      bottom: 10,
+      orient: 'vertical',
+      range: '2017',
+      dayLabel: {
+        margin: 5
+      }
+    }
+  ],
+  series: [
+    
+    {
+      type: 'heatmap',
+      coordinateSystem: 'calendar',
+      data: getVirtualData('2017',inputData)
+    }
+  ]
+};
+
+    if (option && typeof option === 'object') {
+      myChart.setOption(option);
+    }
+
+    window.addEventListener('resize', myChart.resize);
+  </script>
+</body>
+</html>

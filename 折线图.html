@@ -1,0 +1,89 @@
+<!--
+	此示例下载自 https://echarts.apache.org/examples/zh/editor.html?c=line-stack&code=PYBwLglsB2AEC8sDeAoWtJgDYFMBcya6GOAHmAQOQDKYAhgMYDWOAJrADITQ6VEC-AGiJhgwLJBAFUxDACcIAc0U45VOqQgBnPuiFFcK6K2lF0rOvQIBtSoFqIwN-KgQmtADqaVBsSoG9rQIVygLrk3D0pAEnlAaOsAygBdAWF0RQUTQllcADMKTwBmAFJ3M1gFRQALdMoAFhzY4gAjYDBRAFsqbNzZBhh6bg46KpwsAjA5AFccGJExLBrSU1kUnEtBuXwk2VgtOgA3HABBLQBJeroVaX48k71K0i3NLWniMABPECXKBkscRWA5e5bq4EHjOhfADidCksBSdCwWhwlXMljoNkoAEYAJwAdgADO5keikdjUWiAEz49EZElo0rkgCs5IAbOS0eSABzklEkplYwQ4pl4rmopnEvkoplkoVMylimli-lixlillitlClGcnEo3lqwVq0VqiVqqVqmVquVqhVqpWUQkY63Yq0YjV2rV2nV2vV2g12o12k12s12i1WpGqwMO-1O-0u-1u-0e-1e-0--1--0BjFWqKjdD3K7aW7oB5PKjrSHDXSwfToaEKHA3WDWPIyFbQOj1Z6OVw_WQF55Ybi8WHELT0ZhUAAqtUhneIFisddpVKRglKaMXVNpaKXaIygipPMEFIxghRhO3SIyqMESKphNpghvtMJd9ptMXhN3t7fpW3hKZmMEGVKFEqTvdVSjvJlaUPc8RX_IlDy_QkwIyJkIKXWkmWAqkMRXf9SjXf8MT3DIMV3f9-SPADLwyFFbyRAVT3VR8z2Iy8f0PJEkVpMDAw3Qk0SpDcMjfeCOUXZcTyXAUNyw_jBAwt9WIxZdL1pGj2IXZDL1KEjFw4jIuKPDDtyMjdxWQ6JZArWBon4ABuIA
+	⚠ 请注意，该图表不是 Apache ECharts 官方示例，而是由用户代码生成的。请注意鉴别其内容。
+-->
+<!DOCTYPE html>
+<html lang="zh-CN" style="height: 100%">
+<head>
+  <meta charset="utf-8">
+</head>
+<body style="height: 100%; margin: 0">
+  <div id="container9" style="height: 100%"></div>
+
+  
+  <script type="text/javascript" src="https://fastly.jsdelivr.net/npm/echarts@5.4.2/dist/echarts.min.js"></script>
+  <!-- Uncomment this line if you want to dataTool extension
+  <script type="text/javascript" src="https://fastly.jsdelivr.net/npm/echarts@5.4.2/dist/extension/dataTool.min.js"></script>
+  -->
+  <!-- Uncomment this line if you want to use gl extension
+  <script type="text/javascript" src="https://fastly.jsdelivr.net/npm/echarts-gl@2/dist/echarts-gl.min.js"></script>
+  -->
+  <!-- Uncomment this line if you want to echarts-stat extension
+  <script type="text/javascript" src="https://fastly.jsdelivr.net/npm/echarts-stat@latest/dist/ecStat.min.js"></script>
+  -->
+  <!-- Uncomment this line if you want to use map
+  <script type="text/javascript" src="https://fastly.jsdelivr.net/npm/echarts@4.9.0/map/js/china.js"></script>
+  <script type="text/javascript" src="https://fastly.jsdelivr.net/npm/echarts@4.9.0/map/js/world.js"></script>
+  -->
+  <!-- Uncomment these two lines if you want to use bmap extension
+  <script type="text/javascript" src="https://api.map.baidu.com/api?v=3.0&ak=YOUR_API_KEY"></script>
+  <script type="text/javascript" src="https://fastly.jsdelivr.net/npm/echarts@5.4.2/dist/extension/bmap.min.js"></script>
+  -->
+
+  <script type="text/javascript">
+    var dom = document.getElementById('container9');
+    var myChart = echarts.init(dom, null, {
+      renderer: 'canvas',
+      useDirtyRect: false
+    });
+    var app = {};
+    
+    var option;
+
+    option = {
+  title: {
+    text: 'Stacked Line'
+  },
+  tooltip: {
+    trigger: 'axis'
+  },
+  legend: {
+    data: ['袭击次数', '死亡人数', '伤残人数']
+  },
+  grid: {
+    left: '3%',
+    right: '4%',
+    bottom: '3%',
+    containLabel: true
+  },
+  toolbox: {
+    feature: {
+      saveAsImage: {}
+    }
+  },
+  xAxis: {
+    type: 'category',
+    boundaryGap: false,
+    data: ['1970','1971','1972','1973','1974','1975','1976','1977','1978','1979','1980','1981','1982','1983','1984','1985','1986','1987','1988','1989','1990','1991','1992','1993','1994','1995','1996','1997','1998','1999','2000','2001','2002','2003','2004','2005','2006','2007','2008','2009','2010','2011','2012','2013','2014','2015','2016','2017','2018','2019','2020']
+  },
+  yAxis: {
+    type: 'value'
+  },
+  series: [
+    {
+      name: '全球恐怖袭击次数',
+      type: 'line',
+      stack: 'Total',
+      data: [651,471,567,473,581,740,923,1319,1526,2662,2661,2586,2543,2870,3495,2914,2860,3183,3720,4324,3886,4685,5071,3456,3081,3058,3198,934,1396,1823,1912,1330,1280,1164,2017,2757,3250,4801,4723,4827,5075,8525,12047,16960,15138,14051,11364,9853,8537,8438]
+    },
+  ]
+};
+
+    if (option && typeof option === 'object') {
+      myChart.setOption(option);
+    }
+
+    window.addEventListener('resize', myChart.resize);
+  </script>
+</body>
+</html>

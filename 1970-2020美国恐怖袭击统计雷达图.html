@@ -1,0 +1,108 @@
+<!--
+	此示例下载自 https://echarts.apache.org/examples/zh/editor.html?c=radar&code=PYBwLglsB2AEC8sDeAoWtJgDYFMBcya6GOAHmAQOQBCAhgM4QDGsASrQCa0BOsAwgAseYSkQC-AGiK4A5jmgcCqYrC5haBANqUAglizAmtMDg6xqAVw5yRE2LqZgLtLLADKIeRwjQZlALriUujcnDxKROgA9FGw9EKeVEwQ3Ey4lMHEPt5GYMDcWpHESLDQtAC2-PZuLjj0GbDltKQEAGwArAAMnbCSReglZZVUOhzlPhD0YKGQMA1NLbAAjK3dPX0qA6UVVZQAktAAZvlNs3AAKjhMAtDABjIAnvPNBADMa-uZKoM7VHwWU2AlV4bgsIBA-VsjResFeAA41r0vsVtsN7AARHAANxwBhAlWgUIWBHaACZERtiIF0JT6DhuBA6oVvv1UbtLNYcGBYFj6HFPAofH5kegwA9EvZQlxuBlWWoNLBNKyBsriFiXBYqpoACzkzp2d7dOx6o2wrqm82mpYI7r-EWbIa7PQGXKmcxWGyiTbESne5TetUarWWuxLbVrY02_WwUmrU26iMxpZrO2q9COkaOZyuDxeIVegNiVnUn1EQJiADcQA
+	⚠ 请注意，该图表不是 Apache ECharts 官方示例，而是由用户代码生成的。请注意鉴别其内容。
+-->
+<!DOCTYPE html>
+<html lang="zh-CN" style="height: 100%">
+<head>
+  <meta charset="utf-8">
+</head>
+<body style="height: 100%; margin: 0">
+  <div id="container5" style="height: 100%"></div>
+
+  
+  <script type="text/javascript" src="https://fastly.jsdelivr.net/npm/echarts@5.4.2/dist/echarts.min.js"></script>
+  <!-- Uncomment this line if you want to dataTool extension
+  <script type="text/javascript" src="https://fastly.jsdelivr.net/npm/echarts@5.4.2/dist/extension/dataTool.min.js"></script>
+  -->
+  <!-- Uncomment this line if you want to use gl extension
+  <script type="text/javascript" src="https://fastly.jsdelivr.net/npm/echarts-gl@2/dist/echarts-gl.min.js"></script>
+  -->
+  <!-- Uncomment this line if you want to echarts-stat extension
+  <script type="text/javascript" src="https://fastly.jsdelivr.net/npm/echarts-stat@latest/dist/ecStat.min.js"></script>
+  -->
+  <!-- Uncomment this line if you want to use map
+  <script type="text/javascript" src="https://fastly.jsdelivr.net/npm/echarts@4.9.0/map/js/china.js"></script>
+  <script type="text/javascript" src="https://fastly.jsdelivr.net/npm/echarts@4.9.0/map/js/world.js"></script>
+  -->
+  <!-- Uncomment these two lines if you want to use bmap extension
+  <script type="text/javascript" src="https://api.map.baidu.com/api?v=3.0&ak=YOUR_API_KEY"></script>
+  <script type="text/javascript" src="https://fastly.jsdelivr.net/npm/echarts@5.4.2/dist/extension/bmap.min.js"></script>
+  -->
+
+  <script type="text/javascript">
+    var dom = document.getElementById('container5');
+    var myChart = echarts.init(dom, null, {
+      renderer: 'canvas',
+      useDirtyRect: false
+    });
+    var app = {};
+    
+    var option;
+
+    option = {
+  title: {
+    text: '关于1970-2020年美国恐怖袭击数据统计'
+  },
+  tooltip: {
+    trigger: 'axis'
+  },
+  legend: {
+    data: ['1970-1980', '1980-1990','1990-2000','2000-2010','2010-2020']
+  },
+  radar: {
+    // shape: 'circle',
+    areaStyle: {},
+    tooltip: {
+        trigger: 'item'
+      },
+    indicator: [
+      { text: '肇事者人数', max: 150 },
+      { text: '被肇事者人数', max: 250 },
+      { text: '受害者死亡总人数', max: 350 },
+      { text: '肇事者死亡人数', max: 120 },
+      { text: '受伤人数', max: 900 },
+    ]
+  },
+  series: [
+    {
+      name: 'American kongbu',
+      type: 'radar',
+      tooltip: {
+        trigger: 'item'
+      },
+      areaStyle: {},
+      data: [
+        {
+          value: [132, 13, 95, 60, 365],
+          name: '1970-1980'
+        },
+        {
+          value: [99,228,129,101,873],
+          name: '1980-1990'
+        },
+        {
+          value: [38,231,327,83,831],
+          name: '1990-2000'
+        },
+        {
+          value: [4,220,108,79,10],
+          name: '2000-2010'
+        } ,
+        {
+          value: [7,13,91,56,22],
+          name: '2010-2020'
+        }
+      ]
+    }
+  ]
+};
+
+    if (option && typeof option === 'object') {
+      myChart.setOption(option);
+    }
+
+    window.addEventListener('resize', myChart.resize);
+  </script>
+</body>
+</html>
